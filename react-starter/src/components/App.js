@@ -1,6 +1,7 @@
 import React from 'react';
 import TSPRunner from './TSPRunner';
 import heap from './Heaps';
+const heapResult = require('./TSPRunner.js')
 
 let canvasContainerStyle = {
   margin: "10 auto"
@@ -15,9 +16,10 @@ class TSPCanvas extends React.Component {
     this.state = {
     };
   } 
-  updateTSPVertices() {
+  updateTSPVertices(results) {
     // when the TSP has a set of vertices (cities), draw them as small
     // circles here.
+    console.log(results);
   }
   updateTSPPath() {
     // when the TSP has computed the "best" path, draw it here along the circles
@@ -29,12 +31,12 @@ class TSPCanvas extends React.Component {
   }
   click() {
     this.drawCircle();
-    // console.log(heap);
+    console.log(heapResult);
   }
   render() {
     return (<div style={canvasContainerStyle}>
              <canvas id="TSP" ref={(c) => this.context = c.getContext('2d')} height={canvasStyle.height} width={canvasStyle.width} style={canvasStyle} onClick={() => this.click()} />
-             <TSPRunner />
+             <TSPRunner onComplete={this.updateTSPVertices}/>
            </div>
     );
   }

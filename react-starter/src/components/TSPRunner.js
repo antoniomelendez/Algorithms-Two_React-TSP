@@ -28,7 +28,9 @@ class TSPRunner extends React.Component {
     if (this.state.selectedOption === 'heaps' && this.state.numberOption > 11) {
       return alert("That Number is too big! Please select Nearest Neighbor to get a result")
     } else {
-      heap(this.state.numberOption);
+      const heapResult = heap(this.state.numberOption);
+      // console.log(heapResult);
+      console.log(this.props.onComplete(heapResult));
     }
 
     console.log('You have selected:', this.state.selectedOption);
@@ -53,4 +55,5 @@ class TSPRunner extends React.Component {
     );
   }
 }
+
 export default TSPRunner;
